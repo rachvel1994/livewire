@@ -36,6 +36,6 @@ class EditableTable extends Component
 
     public function render(): View
     {
-        return view('livewire.editable-table');
+        return view('livewire.editable-table')->title('Editable Table');
     }
 }
