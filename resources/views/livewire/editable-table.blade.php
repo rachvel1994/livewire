@@ -6,10 +6,9 @@
         removeRow(key) {
             this.rows.splice(key, 1);
         },
-        saveRows() {
-            $wire.save(this.rows);
-        }
-    }" class="p-4 bg-white rounded-lg shadow-md">
+    }"
+
+     class="p-4 bg-white rounded-lg shadow-md">
     <table class="w-full border border-gray-200 divide-y divide-gray-200 rounded-lg overflow-hidden">
         <thead class="bg-gray-50">
         <tr>
@@ -22,7 +21,7 @@
         <tbody class="bg-white divide-y divide-gray-200">
         <template x-for="(row, key) in rows" :key="key">
             <tr>
-                <td class="px-6 py-4 text-sm text-gray-700" x-text="key + 1"></td>
+                <td class="px-6 py-4 text-sm text-gray-700" x-text="key + 1" wire:model.live="rows"></td>
                 <td class="px-6 py-4">
                     <input type="text" x-model="row.alpineInput" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
                 </td>
@@ -42,8 +41,9 @@
         <button @click="addRow()" class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-blue-600">
             Добавить строку
         </button>
-        <button @click="saveRows()" class="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-green-600">
+        <button @click="$wire.$refresh()" class="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:bg-green-600">
             Сохранить
         </button>
     </div>
 </div>
+
