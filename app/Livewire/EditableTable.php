@@ -17,18 +17,12 @@ class EditableTable extends Component
         $this->rows = Cache::get($this->cacheKey, [['alpineInput' => '', 'input' => '']]);
     }
 
-    public function addRow(): void
+    public function hydrate(): void
     {
-        $this->rows[] = ['alpineInput' => '', 'input' => ''];
+        $this->dispatch('save');
     }
 
-    public function removeRow($key): void
-    {
-        unset($this->rows[$key]);
-        $this->rows = array_values($this->rows);
-    }
-
-    public function save(array $rows): void
+    public function saveRows(array $rows): void
     {
         $this->rows = $rows;
         Cache::put($this->cacheKey, $this->rows);
